@@ -5,15 +5,14 @@ import { useState, useEffect } from "react";
 
 const RitualV: NextPage = () => {
   const [countdown, setCountdown] = useState<string>("");
+
   const { ref: countdownRef } = useScramble({
     text: countdown,
-    speed: 1.5,    // Much slower speed
-    tick: 5,       // Increased tick duration
-    step: 0.5,     // Smaller step size
-    scramble: 3,   // Reduced scramble
-    overflow: true,
-    replay: true,
-    playOnMount: true
+    speed: 1.5,
+    tick: 5,
+    step: 0.5,
+    scramble: 3,
+    overflow: true
   });
 
   useEffect(() => {
@@ -42,27 +41,33 @@ const RitualV: NextPage = () => {
     tick: 1,
     step: 3,
     scramble: 42,
-    seed: 1,
-    overflow: true,
-    replay: true,
-    playOnMount: true
+    overflow: true
   };
 
-  const { ref: taglineRef, replay: replayTagline } = useScramble({
-    ...scrambleConfig,
-    text: "First it becomes a habit\nthen it becomes a Ritual.",
+  const [taglineText, setTaglineText] = useState("First it becomes a habit\nthen it becomes a Ritual.");
+  const [descriptionText, setDescriptionText] = useState("Ritual is a habit tracking and analytics app that helps you create and maintain good long-term habits.");
+  const [launchText, setLaunchText] = useState("Launching January 1st, 2025");
+
+  const { ref: taglineRef } = useScramble({
+    text: taglineText,
     speed: 0.8,
+    ...scrambleConfig
   });
 
-  const { ref: descriptionRef, replay: replayDesc } = useScramble({
-    ...scrambleConfig,
-    text: "Ritual is a habit tracking and analytics app that helps you create and maintain good long-term habits."
+  const { ref: descriptionRef } = useScramble({
+    text: descriptionText,
+    ...scrambleConfig
   });
 
-  const { ref: launchRef, replay: replayLaunch } = useScramble({
-    ...scrambleConfig,
-    text: "Launching January 1st, 2025"
+  const { ref: launchRef } = useScramble({
+    text: launchText,
+    ...scrambleConfig
   });
+
+  const handleHover = (setText: React.Dispatch<React.SetStateAction<string>>, text: string) => {
+    setText("");
+    setTimeout(() => setText(text), 100);
+  };
 
   return (
     <div className="w-full relative bg-white h-[1275px] text-left text-29xl text-black font-karla">
@@ -86,14 +91,12 @@ const RitualV: NextPage = () => {
       <b 
         ref={taglineRef} 
         className="absolute top-[424px] left-[1027px] leading-[60px] whitespace-pre-line cursor-pointer" 
-        onMouseEnter={() => replayTagline()}
-        onMouseLeave={() => {}}
+        onMouseEnter={() => handleHover(setTaglineText, taglineText)}
       />
       <div 
         ref={descriptionRef} 
         className="absolute top-[600px] left-[1027px] text-[32px] leading-[40px] flex items-center w-[580px] cursor-pointer"
-        onMouseEnter={() => replayDesc()}
-        onMouseLeave={() => {}}
+        onMouseEnter={() => handleHover(setDescriptionText, descriptionText)}
       />
       <div 
         ref={countdownRef}
@@ -102,8 +105,7 @@ const RitualV: NextPage = () => {
       <div 
         ref={launchRef} 
         className="absolute top-[1214px] left-[1027px] text-[36px] leading-[17px] cursor-pointer"
-        onMouseEnter={() => replayLaunch()}
-        onMouseLeave={() => {}}
+        onMouseEnter={() => handleHover(setLaunchText, launchText)}
       />
     </div>
   );
