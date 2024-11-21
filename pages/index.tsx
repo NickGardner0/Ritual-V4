@@ -36,8 +36,9 @@ const RitualV: NextPage = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Updated scrambleConfig with the speed you want for tagline
   const scrambleConfig = {
-    speed: 0.5,
+    speed: 0.8, // Changed from 0.5 to 0.8 to match your desired tagline speed
     tick: 1,
     step: 3,
     scramble: 42,
@@ -48,9 +49,9 @@ const RitualV: NextPage = () => {
   const [descriptionText, setDescriptionText] = useState("Ritual is a habit tracking and analytics app that helps you create and maintain good long-term habits.");
   const [launchText, setLaunchText] = useState("Launching January 1st, 2025");
 
+  // Removed the explicit speed property here since it's now in scrambleConfig
   const { ref: taglineRef } = useScramble({
     text: taglineText,
-    speed: 0.8,
     ...scrambleConfig
   });
 
