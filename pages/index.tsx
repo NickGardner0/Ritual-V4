@@ -102,22 +102,22 @@ const RitualV: NextPage = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-[#F5F5F5] flex flex-col items-center justify-between px-4">
+    <div className="w-full min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-between px-4">
       {/* Top section with description */}
-      <div className="w-full max-w-4xl mt-16">
+      <div className="w-full max-w-4xl mt-8 md:mt-16">
         <div 
           ref={descriptionRef} 
-          className="text-center cursor-pointer"
-          style={{ fontSize: '32px', lineHeight: '1.4' }}
+          className="text-center cursor-pointer px-4"
+          style={{ fontSize: 'clamp(18px, 5vw, 32px)', lineHeight: '1.4' }}
           onMouseEnter={() => handleHover(setDescriptionText, descriptionText)}
         />
       </div>
 
       {/* Center section with logo and text */}
-      <div className="flex items-center gap-2" style={{ fontSize: '56px' }}>
+      <div className="flex items-center gap-2" style={{ fontSize: 'clamp(40px, 8vw, 56px)' }}>
         <svg 
           viewBox="0 0 100 100" 
-          className="w-12 h-12" 
+          className="w-8 h-8 md:w-12 md:h-12" 
           fill="currentColor"
         >
           <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="10"/>
@@ -128,41 +128,41 @@ const RitualV: NextPage = () => {
       </div>
 
       {/* Bottom section with countdown and launch date */}
-      <div className="mb-16 flex flex-col items-center gap-8">
+      <div className="mb-8 md:mb-16 flex flex-col items-center gap-4 md:gap-8">
         {/* Countdown container */}
-        <div className="border border-black p-8" style={{ minWidth: '500px' }}>
-          <div className="flex justify-between items-end px-4">
+        <div className="border border-black p-4 md:p-8 w-full max-w-[500px]">
+          <div className="flex justify-between items-end px-2 md:px-4">
             <div className="flex flex-col items-center">
-              <span ref={daysRef} style={{ fontSize: '48px', fontWeight: '400' }}>
+              <span ref={daysRef} style={{ fontSize: 'clamp(24px, 6vw, 48px)', fontWeight: '400' }}>
                 {days}
               </span>
-              <span style={{ fontSize: '14px', color: '#4B5563' }}>days</span>
+              <span className="text-xs md:text-sm text-gray-600">days</span>
             </div>
             <div className="flex flex-col items-center">
-              <span ref={hoursRef} style={{ fontSize: '48px', fontWeight: '400' }}>
+              <span ref={hoursRef} style={{ fontSize: 'clamp(24px, 6vw, 48px)', fontWeight: '400' }}>
                 {hours}
               </span>
-              <span style={{ fontSize: '14px', color: '#4B5563' }}>hours</span>
+              <span className="text-xs md:text-sm text-gray-600">hours</span>
             </div>
             <div className="flex flex-col items-center">
-              <span ref={minutesRef} style={{ fontSize: '48px', fontWeight: '400' }}>
+              <span ref={minutesRef} style={{ fontSize: 'clamp(24px, 6vw, 48px)', fontWeight: '400' }}>
                 {minutes}
               </span>
-              <span style={{ fontSize: '14px', color: '#4B5563' }}>mins</span>
+              <span className="text-xs md:text-sm text-gray-600">mins</span>
             </div>
             <div className="flex flex-col items-center">
-              <span ref={secondsRef} style={{ fontSize: '48px', fontWeight: '400' }}>
+              <span ref={secondsRef} style={{ fontSize: 'clamp(24px, 6vw, 48px)', fontWeight: '400' }}>
                 {seconds}
               </span>
-              <span style={{ fontSize: '14px', color: '#4B5563' }}>seconds</span>
+              <span className="text-xs md:text-sm text-gray-600">seconds</span>
             </div>
           </div>
         </div>
         
         <div 
           ref={launchRef} 
-          className="text-center cursor-pointer"
-          style={{ fontSize: '32px' }}
+          className="text-center cursor-pointer px-4"
+          style={{ fontSize: 'clamp(18px, 5vw, 32px)' }}
           onMouseEnter={() => handleHover(setLaunchText, launchText)}
         />
       </div>
