@@ -102,9 +102,9 @@ const RitualV: NextPage = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-[#F5F5F5] flex flex-col items-center justify-between p-3">
+    <div className="w-full h-screen bg-[#F5F5F5] flex flex-col items-center px-3">
       {/* Top section with description */}
-      <div className="w-full max-w-4xl pt-2">
+      <div className="w-full max-w-4xl pt-4 md:pt-8">
         <div 
           ref={descriptionRef} 
           className="text-center cursor-pointer px-2"
@@ -113,59 +113,65 @@ const RitualV: NextPage = () => {
         />
       </div>
 
-      {/* Center section with logo and text */}
-      <div className="flex items-center gap-1" style={{ fontSize: 'clamp(28px, 5vw, 48px)' }}>
-        <svg 
-          viewBox="0 0 100 100" 
-          className="w-5 h-5 md:w-10 md:h-10" 
-          fill="currentColor"
-        >
-          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="10"/>
-          <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="10"/>
-          <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="10"/>
-        </svg>
-        Ritual
-      </div>
+      {/* Center section with logo and countdown */}
+      <div className="flex-1 flex flex-col items-center justify-center gap-8 md:gap-12 -mt-8">
+        {/* Logo */}
+        <div className="flex items-center gap-1" style={{ fontSize: 'clamp(28px, 5vw, 48px)' }}>
+          <svg 
+            viewBox="0 0 100 100" 
+            className="w-5 h-5 md:w-10 md:h-10" 
+            fill="currentColor"
+          >
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="10"/>
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="10"/>
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="10"/>
+          </svg>
+          Ritual
+        </div>
 
-      {/* Bottom section with countdown and launch date */}
-      <div className="flex flex-col items-center gap-2">
-        {/* Countdown container */}
-        <div className="border border-black p-2 md:p-6 w-full max-w-[450px]">
-          <div className="flex justify-between items-end px-2">
-            <div className="flex flex-col items-center">
-              <span ref={daysRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
-                {days}
-              </span>
-              <span className="text-[9px] md:text-xs text-gray-600">days</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span ref={hoursRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
-                {hours}
-              </span>
-              <span className="text-[9px] md:text-xs text-gray-600">hours</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span ref={minutesRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
-                {minutes}
-              </span>
-              <span className="text-[9px] md:text-xs text-gray-600">mins</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span ref={secondsRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
-                {seconds}
-              </span>
-              <span className="text-[9px] md:text-xs text-gray-600">seconds</span>
+        {/* Countdown and launch text */}
+        <div className="flex flex-col items-center gap-2">
+          {/* Countdown container */}
+          <div className="border border-black p-2 md:p-6 w-full max-w-[450px]">
+            <div className="flex justify-between items-end px-2">
+              <div className="flex flex-col items-center">
+                <span ref={daysRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
+                  {days}
+                </span>
+                <span className="text-[9px] md:text-xs text-gray-600">days</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span ref={hoursRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
+                  {hours}
+                </span>
+                <span className="text-[9px] md:text-xs text-gray-600">hours</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span ref={minutesRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
+                  {minutes}
+                </span>
+                <span className="text-[9px] md:text-xs text-gray-600">mins</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span ref={secondsRef} style={{ fontSize: 'clamp(18px, 4vw, 40px)', fontWeight: '400' }}>
+                  {seconds}
+                </span>
+                <span className="text-[9px] md:text-xs text-gray-600">seconds</span>
+              </div>
             </div>
           </div>
+          
+          <div 
+            ref={launchRef} 
+            className="text-center cursor-pointer px-2"
+            style={{ fontSize: 'clamp(14px, 3.5vw, 28px)' }}
+            onMouseEnter={() => handleHover(setLaunchText, launchText)}
+          />
         </div>
-        
-        <div 
-          ref={launchRef} 
-          className="text-center cursor-pointer px-2 pb-2"
-          style={{ fontSize: 'clamp(14px, 3.5vw, 28px)' }}
-          onMouseEnter={() => handleHover(setLaunchText, launchText)}
-        />
       </div>
+
+      {/* Add bottom padding */}
+      <div className="pb-4 md:pb-8" />
     </div>
   );
 };
